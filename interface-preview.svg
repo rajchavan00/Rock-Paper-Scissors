@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+<rect width="1440" height="900" fill="#0E1119"/>
+<rect x="0" y="0" width="1440" height="94" fill="#151A26"/>
+<path d="M0 94H1440" stroke="#232A3B"/>
+<g font-family="Arial, sans-serif" fill="#F4F1E6">
+<text x="54" y="49" font-size="30" font-weight="bold">✂  ROCK PAPER SCISSORS</text><text x="57" y="72" font-size="11" letter-spacing="4" fill="#8892A6">THE PROGRAM</text>
+<text x="1120" y="36" font-size="11" fill="#8892A6" letter-spacing="2">MATCH LENGTH</text><rect x="1115" y="47" width="150" height="32" fill="#151A26" stroke="#232A3B"/><text x="1130" y="68" font-size="13">Best of 5  ▾</text>
+<rect x="48" y="128" width="875" height="690" rx="4" fill="#151A26" stroke="#232A3B"/>
+<circle cx="480" cy="440" r="300" fill="none" stroke="#232A3B" opacity=".65"/>
+<text x="485" y="174" font-size="12" text-anchor="middle" fill="#8892A6" letter-spacing="3">ROUND 1 OF 5</text><text x="485" y="220" font-size="38" text-anchor="middle" font-weight="bold">FIRST TO 3</text>
+<text x="260" y="286" font-size="15" text-anchor="middle" fill="#8892A6">YOU</text><text x="705" y="286" font-size="15" text-anchor="middle" fill="#8892A6">THE HOUSE</text>
+<rect x="145" y="314" width="230" height="205" rx="4" fill="#0E1119" stroke="#232A3B"/><rect x="590" y="314" width="230" height="205" rx="4" fill="#0E1119" stroke="#232A3B"/>
+<text x="260" y="433" font-size="94" text-anchor="middle" fill="#1A3FA8">✊</text><text x="705" y="433" font-size="94" text-anchor="middle" fill="#FF4A21">✌</text><text x="482" y="418" font-size="22" fill="#8892A6" text-anchor="middle">VS</text>
+<text x="260" y="551" font-size="12" fill="#8892A6" text-anchor="middle">Choose your gesture</text><text x="705" y="551" font-size="12" fill="#8892A6" text-anchor="middle">Waiting</text>
+<text x="485" y="604" font-size="18" text-anchor="middle" fill="#8892A6">PICK YOUR MOVE</text>
+<rect x="145" y="634" width="205" height="112" fill="#1A3FA8"/><rect x="370" y="634" width="205" height="112" fill="#F4F1E6"/><rect x="595" y="634" width="205" height="112" fill="#FF4A21"/>
+<text x="247" y="687" font-size="42" text-anchor="middle" fill="#F4F1E6">✊</text><text x="472" y="687" font-size="42" text-anchor="middle" fill="#0E1119">✋</text><text x="697" y="687" font-size="42" text-anchor="middle" fill="#0E1119">✌</text>
+<text x="247" y="722" font-size="13" text-anchor="middle" fill="#F4F1E6">ROCK</text><text x="472" y="722" font-size="13" text-anchor="middle" fill="#0E1119">PAPER</text><text x="697" y="722" font-size="13" text-anchor="middle" fill="#0E1119">SCISSORS</text>
+<rect x="955" y="128" width="437" height="690" rx="4" fill="#151A26" stroke="#232A3B"/>
+<text x="990" y="176" font-size="22" font-weight="bold">YOUR RECORD</text><text x="990" y="202" font-size="12" fill="#8892A6">A running history of every match</text>
+</g>
+<g font-family="Arial,sans-serif">
+<rect x="990" y="232" width="170" height="90" fill="#0E1119" stroke="#232A3B"/><rect x="1177" y="232" width="180" height="90" fill="#0E1119" stroke="#232A3B"/>
+<text x="1008" y="258" fill="#8892A6" font-size="11">MATCHES</text><text x="1008" y="302" fill="#F4F1E6" font-size="34">12</text><text x="1195" y="258" fill="#8892A6" font-size="11">WIN RATE</text><text x="1195" y="302" fill="#3DD68C" font-size="34">67%</text>
+<text x="990" y="373" fill="#F4F1E6" font-size="18" font-weight="bold">RECENT ROUNDS</text>
+<rect x="990" y="395" width="367" height="56" fill="#0E1119"/><text x="1008" y="418" fill="#F4F1E6" font-size="13">You  ✊  vs  ✌  House</text><text x="1008" y="438" fill="#3DD68C" font-size="11">WIN</text>
+<rect x="990" y="462" width="367" height="56" fill="#0E1119"/><text x="1008" y="485" fill="#F4F1E6" font-size="13">You  ✋  vs  ✋  House</text><text x="1008" y="505" fill="#8892A6" font-size="11">TIE</text>
+<rect x="990" y="529" width="367" height="56" fill="#0E1119"/><text x="1008" y="552" fill="#F4F1E6" font-size="13">You  ✌  vs  ✊  House</text><text x="1008" y="572" fill="#FF4A21" font-size="11">LOSS</text>
+<text x="990" y="636" fill="#F4F1E6" font-size="18" font-weight="bold">FAVOURITE GESTURE</text><rect x="990" y="658" width="367" height="12" fill="#232A3B"/><rect x="990" y="658" width="205" height="12" fill="#1A3FA8"/><text x="990" y="695" fill="#8892A6" font-size="12">Rock is your most-played gesture</text>
+<text x="990" y="770" fill="#8892A6" font-size="11">Illustrative interface preview — not a live capture</text>
+</g></svg>
