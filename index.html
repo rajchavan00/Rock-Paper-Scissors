@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rock Paper Scissors — The Program</title>
+<meta name="description" content="A tournament-standard rock paper scissors game. Play the house or a friend, best of three, five or seven.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0E1119">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230E1119'/%3E%3Cpath d='M44 8h11v46h-11z' transform='rotate(-24 50 50)' fill='%23F4F1E6'/%3E%3Cpath d='M44 8h11v46h-11z' transform='rotate(24 50 50)' fill='%23F4F1E6'/%3E%3Ccircle cx='50' cy='52' r='7' fill='%23FF4A21'/%3E%3Ccircle cx='32' cy='78' r='13' fill='none' stroke='%231A3FA8' stroke-width='8'/%3E%3Ccircle cx='68' cy='78' r='13' fill='none' stroke='%231A3FA8' stroke-width='8'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<!-- ————— Icon sprite ————— -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="g-rock" viewBox="0 0 100 100">
+      <rect x="20" y="40" width="60" height="46" rx="15" fill="currentColor"/>
+      <circle cx="32" cy="42" r="10" fill="currentColor"/>
+      <circle cx="49" cy="39" r="10.5" fill="currentColor"/>
+      <circle cx="66" cy="42" r="10" fill="currentColor"/>
+      <path d="M14 56c0-8 6-14 14-14h16c6 0 9 5 6 10-3 6-11 10-20 11-8 1-16-1-16-7z" fill="currentColor"/>
+      <path d="M20 62h52" stroke="#0E1119" stroke-opacity=".28" stroke-width="4" stroke-linecap="round" fill="none"/>
+    </symbol>
+    <symbol id="g-paper" viewBox="0 0 100 100">
+      <rect x="27" y="44" width="46" height="42" rx="14" fill="currentColor"/>
+      <rect x="29" y="16" width="11" height="40" rx="5.5" fill="currentColor"/>
+      <rect x="42" y="10" width="11" height="46" rx="5.5" fill="currentColor"/>
+      <rect x="55" y="14" width="11" height="42" rx="5.5" fill="currentColor"/>
+      <rect x="68" y="22" width="11" height="34" rx="5.5" fill="currentColor"/>
+      <path d="M26 56c-1-8 3-14 10-16 6-2 11 1 11 7 0 7-6 13-13 15-5 1-8-1-8-6z" fill="currentColor"/>
+    </symbol>
+    <symbol id="g-scissors" viewBox="0 0 100 100">
+      <path d="M45 6h11v48H45z" transform="rotate(-26 50 50)" fill="currentColor"/>
+      <path d="M45 6h11v48H45z" transform="rotate(26 50 50)" fill="currentColor"/>
+      <circle cx="50" cy="53" r="7.5" fill="currentColor"/>
+      <path d="M44 57 30 72M56 57l14 15" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="28" cy="80" r="12" fill="none" stroke="currentColor" stroke-width="7.5"/>
+      <circle cx="72" cy="80" r="12" fill="none" stroke="currentColor" stroke-width="7.5"/>
+    </symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24">
+      <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>
+      <path d="M16 8.5a5 5 0 0 1 0 7M18.8 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24">
+      <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>
+      <path d="M16 9.5l5 5m0-5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24">
+      <path d="M20 12a8 8 0 1 1-2.6-5.9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M20 4v4.5h-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24">
+      <path d="M7 4h10v5a5 5 0 0 1-10 0V4z" fill="currentColor"/>
+      <path d="M7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3" fill="none" stroke="currentColor" stroke-width="1.9"/>
+      <path d="M12 14v4M8 21h8M10 18h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="skip-link" href="#arena">Skip to the arena</a>
+
+<header class="masthead">
+  <div class="masthead__brand">
+    <svg class="masthead__mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#g-scissors"/></svg>
+    <h1 class="masthead__title">Rock&nbsp;Paper&nbsp;Scissors</h1>
+    <p class="masthead__sub">The Program</p>
+  </div>
+
+  <div class="masthead__tools">
+    <label class="field">
+      <span class="field__label">Match length</span>
+      <select class="field__select" id="length-select" aria-label="Match length">
+        <option value="3">Best of 3</option>
+        <option value="5" selected>Best of 5</option>
+        <option value="7">Best of 7</option>
+      </select>
+    </label>
+    <button class="iconbtn" id="sound-toggle" type="button" aria-pressed="true">
+      <svg class="iconbtn__glyph" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sound" id="sound-icon"/></svg>
+      <span class="visually-hidden">Sound on</span>
+    </button>
+  </div>
+</header>
+
+<main class="layout">
+
+  <!-- ————— Arena ————— -->
+  <section class="arena" id="arena" aria-labelledby="arena-heading">
+    <div class="arena__glow" aria-hidden="true"></div>
+
+    <div class="arena__head">
+      <p class="arena__round" id="round-label">Round 1 of 5</p>
+      <h2 class="arena__heading" id="arena-heading">First to 3</h2>
+    </div>
+
+    <div class="contestants">
+      <div class="contestant" id="side-you">
+        <p class="contestant__who" id="you-name">You</p>
+        <div class="contestant__slot" id="you-slot" data-gesture="">
+          <svg class="contestant__glyph" viewBox="0 0 100 100" aria-hidden="true"><use id="you-use" href="#g-rock"/></svg>
+        </div>
+        <p class="contestant__state" id="you-state">Choose your gesture</p>
+      </div>
+
+      <p class="versus" aria-hidden="true"><span>vs</span></p>
+
+      <div class="contestant" id="side-house">
+        <p class="contestant__who" id="house-name">The house</p>
+        <div class="contestant__slot" id="house-slot" data-gesture="">
+          <svg class="contestant__glyph" viewBox="0 0 100 100" aria-hidden="true"><use id="house-use" href="#g-rock"/></svg>
+        </div>
+        <p class="contestant__state" id="house-state">Waiting</p>
+      </div>
+    </div>
+
+    <!-- Verdict stamp -->
+    <div class="verdict" id="verdict" role="status" aria-live="polite">
+      <p class="verdict__word" id="verdict-word"></p>
+      <p class="verdict__detail" id="verdict-detail"></p>
+    </div>
+
+    <!-- Gesture plates -->
+    <div class="plates" id="plates" role="group" aria-label="Choose your gesture">
+      <button class="plate" type="button" data-gesture="rock" aria-label="Rock, press 1">
+        <svg class="plate__glyph" viewBox="0 0 100 100" aria-hidden="true"><use href="#g-rock"/></svg>
+        <span class="plate__name">Rock</span>
+        <span class="plate__key" aria-hidden="true">1</span>
+      </button>
+      <button class="plate" type="button" data-gesture="paper" aria-label="Paper, press 2">
+        <svg class="plate__glyph" viewBox="0 0 100 100" aria-hidden="true"><use href="#g-paper"/></svg>
+        <span class="plate__name">Paper</span>
+        <span class="plate__key" aria-hidden="true">2</span>
+      </button>
+      <button class="plate" type="button" data-gesture="scissors" aria-label="Scissors, press 3">
+        <svg class="plate__glyph" viewBox="0 0 100 100" aria-hidden="true"><use href="#g-scissors"/></svg>
+        <span class="plate__name">Scissors</span>
+        <span class="plate__key" aria-hidden="true">3</span>
+      </button>
+    </div>
+
+    <p class="arena__prompt" id="arena-prompt">Pick a gesture to start the round.</p>
+
+    <div class="arena__actions">
+      <button class="btn btn--primary" id="advance-btn" type="button" hidden>Next round</button>
+      <button class="btn" id="restart-btn" type="button" hidden>Start a new match</button>
+    </div>
+  </section>
+
+  <!-- ————— Program panel ————— -->
+  <aside class="program" aria-label="Match program and records">
+
+    <section class="card card--score">
+      <h3 class="card__title">Score</h3>
+      <p class="scoreline">
+        <span class="scoreline__val" id="score-you">0</span>
+        <span class="scoreline__dash" aria-hidden="true">–</span>
+        <span class="scoreline__val" id="score-house">0</span>
+      </p>
+      <div class="ladder" id="ladder" aria-hidden="true"></div>
+      <p class="ladder__legend">
+        <span id="ladder-you">You</span>
+        <span id="ladder-house">House</span>
+      </p>
+    </section>
+
+    <section class="card card--log">
+      <h3 class="card__title">Rounds</h3>
+      <ol class="log" id="log"></ol>
+      <p class="log__empty" id="log-empty">No rounds played yet.</p>
+    </section>
+
+    <section class="card card--stats">
+      <h3 class="card__title">Your record</h3>
+      <dl class="stats">
+        <div class="stats__item"><dt>Matches</dt><dd id="stat-matches">0</dd></div>
+        <div class="stats__item"><dt>Won</dt><dd id="stat-wins">0</dd></div>
+        <div class="stats__item"><dt>Lost</dt><dd id="stat-losses">0</dd></div>
+        <div class="stats__item"><dt>Drawn</dt><dd id="stat-ties">0</dd></div>
+        <div class="stats__item"><dt>Streak</dt><dd id="stat-streak">0</dd></div>
+        <div class="stats__item"><dt>Best streak</dt><dd id="stat-best">0</dd></div>
+      </dl>
+      <div class="fave" id="fave" hidden>
+        <p class="fave__label">You favour <span id="fave-name">rock</span></p>
+        <div class="fave__bar" id="fave-bar"></div>
+      </div>
+      <button class="btn btn--quiet" id="reset-stats" type="button">
+        <svg class="btn__glyph" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-reset"/></svg>
+        Reset record
+      </button>
+    </section>
+
+  </aside>
+</main>
+
+<footer class="footer">
+  <p>Rock crushes scissors. Scissors shears paper. Paper smothers rock. Ties replay the round.</p>
+</footer>
+
+<!-- ————— Setup overlay ————— -->
+<div class="overlay" id="setup" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="setup-title">
+    <svg class="sheet__mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#g-scissors"/></svg>
+    <h2 class="sheet__title" id="setup-title">Set up your match</h2>
+    <p class="sheet__lede">Choose an opponent and a length. First player to the target number of round wins takes the match.</p>
+
+    <fieldset class="choices">
+      <legend class="choices__legend">Opponent</legend>
+      <label class="choice">
+        <input type="radio" name="opponent" value="house" checked>
+        <span class="choice__body">
+          <span class="choice__name">The house</span>
+          <span class="choice__desc">A computer opponent that watches your patterns and counters them.</span>
+        </span>
+      </label>
+      <label class="choice">
+        <input type="radio" name="opponent" value="friend">
+        <span class="choice__body">
+          <span class="choice__name">A friend</span>
+          <span class="choice__desc">Two players, one device. The screen hides between turns.</span>
+        </span>
+      </label>
+    </fieldset>
+
+    <p class="sheet__hint" id="setup-hint">The house plays a best-of-<span id="setup-length">5</span>. Press 1, 2 or 3 to choose a gesture.</p>
+    <button class="btn btn--primary btn--wide" id="start-btn" type="button">Start match</button>
+  </div>
+</div>
+
+<!-- ————— Pass-the-device shield ————— -->
+<div class="overlay overlay--shield" id="shield" hidden>
+  <div class="sheet sheet--shield" role="dialog" aria-modal="true" aria-labelledby="shield-title">
+    <p class="sheet__eyebrow" id="shield-who">Player 2</p>
+    <h2 class="sheet__title" id="shield-title">Pass the device</h2>
+    <p class="sheet__lede">Hand the screen to the next player. The gestures so far stay hidden until both have chosen.</p>
+    <button class="btn btn--primary btn--wide" id="shield-btn" type="button">I'm ready</button>
+  </div>
+</div>
+
+<!-- ————— Match result ————— -->
+<div class="overlay" id="result" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="result-title">
+    <svg class="sheet__trophy" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-trophy"/></svg>
+    <h2 class="sheet__title" id="result-title">You win the match</h2>
+    <p class="sheet__lede" id="result-detail">You took the match 3–1.</p>
+    <div class="sheet__row">
+      <button class="btn btn--primary" id="rematch-btn" type="button">Play again</button>
+      <button class="btn" id="change-btn" type="button">Change settings</button>
+    </div>
+  </div>
+</div>
+
+<canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+
+<script src="assets/js/audio.js"></script>
+<script src="assets/js/house.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
