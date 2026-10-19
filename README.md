@@ -31,7 +31,7 @@ Built with **HTML, CSS, and vanilla JavaScript**. No build step, package install
 
 ## 🖼️ Preview
 
-![Illustrative interface preview](screenshots/interface-preview.svg)
+![Illustrative interface preview](interface-preview.svg)
 
 > This is an illustrative interface preview, not a browser screenshot. Replace it with a real screenshot of the running game when preparing the final repository presentation.
 
